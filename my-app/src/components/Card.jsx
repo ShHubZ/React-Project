@@ -16,7 +16,6 @@ export default class Card extends Component {
       this.setState((prevState) => ({
         counter: prevState.counter - 1,
       }));
-      
     }
   };
   upHandler = () => {
@@ -32,9 +31,16 @@ export default class Card extends Component {
       <div className={styles.container}>
         <img src={images} alt="Iphone 11" />
         <h3>{name}</h3>
-        <p>{cost}</p>
+        <p>
+          {cost} {counter ? `* ${counter} = ${counter * cost.split(" ")[0]} $` : ""}
+        </p>
         <div className={styles.counter}>
-          <img  className={this.state.counter ? "" : styles.deactive} src={down} alt="down" onClick={this.downHandler}/>
+          <img
+            className={!this.state.counter && styles.deactive}
+            src={down}
+            alt="down"
+            onClick={this.downHandler}
+          />
           <span>{counter}</span>
           <img src={up} alt="up" onClick={this.upHandler} />
         </div>
